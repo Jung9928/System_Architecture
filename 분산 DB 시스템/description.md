@@ -1,4 +1,4 @@
-# CAP 이론 (CAP Theorem)
+# 분산 데이터베이스 시스템 (CAP 이론 포함)
 
 ### 0. 모식도 <br>
 ![img.png](img.png)
