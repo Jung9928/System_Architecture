@@ -1,4 +1,4 @@
-# Reverse Proxy (리버스 프록시)
+# Proxy / Forward Proxy / Reverse Proxy
 
 ### 모식도 <br>
 ![img_1.png](img_1.png)
