@@ -16,7 +16,7 @@
 <br><br>
 
 
-### API 게이트웨이(API Gateway)란?
+### 1. API 게이트웨이(API Gateway)란?
 - 클라이언트와 각 서비스들 사이에 위치하여 클라이언트의 요청을 API Gateway가 받아서 <br>
   설정에 따른 각 엔드포인트로 클라이언트를 대신하여 서비스들에게 요청을 전달하고 <br>
   서비스로부터 결과를 응답받으면 이를 클라이언트에게 전달하는 `프록시(Proxy)` 역할을 수행함. <br><br>
@@ -117,7 +117,7 @@
 ![img_7.png](img_7.png)
 
 
-#### 6) 상용화된 API Gateway는 어떤 것이 있을까?
+### 3. 상용화된 API Gateway는 어떤 것이 있을까?
 - Amazon API Gateway, Kong Gateway, Tyk, KrakenD, Spring Cloud Gateway 등이 있음. <br><br>
 
 
