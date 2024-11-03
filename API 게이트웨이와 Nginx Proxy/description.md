@@ -61,14 +61,44 @@
 
 #### 4) 메디에이션(Mediation)
 - 클라이언트에서 호출하는 요청과 API 서버가 제공하는 API의 스펙에 차이가 발생 시, 이를 중간에서 중재하는 기능을 의미. <br><br>
-- 메디에이션 기능 중, 메세지 호출 변화(Message Exchange Pattern)가 있음. <br>
-  메세지 호출 패턴은 동기(Sync), 비동기(Async)와 같은 API를 호출하는 메세지 패턴을 정의하는 것. <br>
-  API Gateway를 이용하면 다음과 같이 `동기 호출` -> `비동기 호출`로 변경 가능함. <br>
-![img_5.png](img_5.png)
+
+- 메시지 포맷 변환 (Message Format Transformation) 
+  - 클라이언트와 서버가 서로 다른 메시지 포맷을 채택하고 있을 때, 이를 적절하게 변환시켜주는 기능을 의미. <br>
+  - 클라이언트의 요청을 하위 서비스가 처리할 수 있도록 데이터 형식을 변형하거나 <br>
+    하위 서비스의 응답 표준 포맷으로 데이터 형식으로 치환함. <br><br>
+
+- 프로토콜 변환
+  - 다양한 서비스 및 클라이언트를 지원하게 되면, 각 서비스 및 클라이언트가 다른 통신 프로토콜을 사용해야하는 경우가 발생할 수 있음. <br>
+    특히, 내부 API는 gRPC와 같은 차세대 프로토콜을 이용해 구현하면서도, 외부로는 REST API를 통해 서비스 함으로써, <br>
+    내부 API의 성능을 올리면서도 범용성을 높이는 것이 가능함. <br><br>
+
+- 메세지 호출 변환(Message Exchange Pattern) <br>
+  ![img_5.png](img_5.png) <br>
+  - 메세지 호출 패턴은 동기(Sync), 비동기(Async)와 같은 API를 호출하는 메세지 패턴을 정의하는 것. <br>
+    API Gateway를 이용하면 다음과 같이 `동기 호출` -> `비동기 호출`로 변경 가능함. <br>
+
 
 <br><br>
 
+#### 5) 어그리게이션(Aggregation)
+- 서로 다른 API를 묶어서 하나의 API로 제공하는 것을 의미. 
+- 예를 들어, 치킨을 조리하고 포장하는 작업을 하나의 API로 제공한다고 가정해보자. <br>
+  1. 양계장에서 닭 배달
+  2. 조리 방식 선정 (튀기기 or 굽기)
+  3. 포장 <br>
 
+치킨의 조리부터 포장까지 마치기 위해서 위 3개의 서로 다른 서비스의 API를 호출한다고 했을 때, <br>
+이를 API 게이트웨이에서 aggregation 한다면 다음과 같은 형태로 구현할 수 있음. <br>
+![img_6.png](img_6.png)
+<br>
+다만, 과도한 `aggregation`은 API 게이트웨이에 부담을 줄 수 있음. <br>
+이와 같은 문제를 해결하기 위해서, 다음과 같이 여러 API를 조합하는 목적의 `mediation API`서버 계층을 도입할 수 있음. <br>
+
+![img_7.png](img_7.png)
+
+
+#### 6) 상용화된 API Gateway는 어떤 것이 있을까?
+- Amazon API Gateway, Kong Gateway, Tyk, KrakenD, Spring Cloud Gateway 등이 있음. <br><br>
 
 
 ### 2-1. 용도
@@ -161,4 +191,6 @@
 
 
 ### 자료 인용 출처
-ref : https://jcdgods.tistory.com/322#none
+https://kinchi22.github.io/2019/09/22/api-gateway/ <br>
+https://wildeveloperetrain.tistory.com/205 <br>
+
