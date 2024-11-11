@@ -164,10 +164,41 @@
 
 ### 1. Nginx의 구조
 ![img_9.png](img_9.png)
-- 
+- Master Process와 다수의 Worker Process로 구성되어 실행됨. <br>
+  Master Process는 설정 파일을 읽고 유효성을 검사 & Worker Process를 관리함. <br>
 
-<br><br>
+- 모든 요청은 `Worker Process`에서 처리함. <br>
+  Nginx는 이벤트 기반 모델을 사용하고 Worker Process 사이에 요청을 효율적으로 분배하기 위해 OS에 의존적인 매커니즘을 사용. <br>
+  Worker Process의 개수는 설정파일에서 정의되며, 정의된 프로세스 개수 & 사용 가능한 CPU 갯수에 맞게 자동으로 조정됨. <br><br>
 
+- 설정 파일 default path
+  - `/etc/nginx/nginx.conf` <br><br>
+  
+  - 위 경로 없을 시
+    - `/user/local/nginx/conf/nginx.conf` 또는 `/usr/local/etc/nginx/nginx/conf` 
+
+
+- Nginx 모듈은 설정파일에 있는 지시어(directive)에 의해 제어됨. directive는 `simple directive`와 `block directive` 2가지 종류가 있음 <br><br><br>
+  
+- `Simple Directive` : 이름과 값이 있고 세미콜론으로 끝남
+  ```yaml
+    worker_process 1;
+  ```
+  
+- `Block Directive` : 블록을 통해서 여러 directive를 감싼 형태로 정의됨.
+  ```yaml
+    http {
+      server {
+        location / {
+                root /path/to/html;
+        }
+  
+        location /images/ {
+                root /path/to/image;
+        }
+      }
+    }
+  ```
 
 
 
@@ -175,4 +206,5 @@
 #### 자료 인용 출처
 https://kinchi22.github.io/2019/09/22/api-gateway/ <br>
 https://wildeveloperetrain.tistory.com/205 <br>
+https://velog.io/@wijihoon123/Nginx%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80 <br>
 
